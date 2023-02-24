@@ -1,6 +1,10 @@
 package ru.alishev.springcourse.FirstRestApp.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 /**
  * @author Neil Alishev
@@ -14,12 +18,17 @@ public class Person {
     private int id;
 
     @Column(name = "name")
+    @NotEmpty(message = "name should not be empty")
+    @Size(min = 3, max = 20, message = "name should be between 2 and 30 characters")
     private String name;
 
     @Column(name = "age")
+    @Min(value = 0, message = "age should be greater then 0")
     private int age;
 
     @Column(name = "email")
+    @NotEmpty(message = "Email should not be empty")
+    @Email
     private String email;
 
     public Person() {
